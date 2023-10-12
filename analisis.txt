@@ -1,0 +1,134 @@
+REQUISITOS FUNCIONALES
+    - Crear diferntes tipos de documentos (libro, revistas, articulos)
+    - Asignar articulos a clientes.
+    - Crear una clase reserva
+    - Devolver info de documento dado su id
+    - Calcular documentos segun materia
+    - Deterinar la cantidad de revistas segun materia.
+    - Mostrar informacion de todos los libros.
+
+CLASES
+    Biblioteca: Es el main program de el sistema que controla la relacion entre las clases.
+        Atributos:
+            ArrayList clientes
+            ArrayList publiaciones
+            ArrayList prestamos
+        Metodos:
+            Main()
+        Funcionalidades:
+            Ingresar/ creat clientes.
+            Ingresar/ crear nuevas publicaiones de cualquier tipo.
+            Crear prestamos de clientes con publiaciones.
+            Devolver el titulo de una publiacion segun id.
+            Calcular cantidad de documentos segun materia dada.
+            Determinar cantidad de revistas de una materia dada.
+            MOstrar informacion de todos los libros de la bilbioteca.
+    Publicacion: Es la superclase de los elementos que hay en la bilbioteca.
+        Atributos:
+            int id: ID de la publicación.
+            String título: Título de la publicación.
+            String materia: Materia de la publicación.
+            int cantidadEjemplares: Cantidad de ejemplares de la publicación.
+            boolean disponible: Estado de la publicación .
+        Metodos:
+            void Publiacion(int id, String título, String materia, int cantidadEjemplares): Constructor.
+            int getId(): Devuelve el ID de la publicación.
+            String getTítulo(): Devuelve el título de la publicación.
+            String getMateria(): Devuelve la materia de la publicación.
+            int getCantidadEjemplares(): Devuelve la cantidad de ejemplares de la publicación.
+            String getEstado(): Devuelve el estado de la publicación.
+    Libro: Es una subclase de las publiaciones, un tipo de publicacion.
+        Atributos:
+            String Autor: El autor del libro.
+            String Editorial: Editorial del libro.
+        Metodos:
+            void Libro(int id, String título, String materia, int cantidadEjemplares, Strin Autor, String Editorial): Constructor.
+            String getEditorial(): Devuelve la editorial del libro.
+            String getAutor(): Devuelve la editorial del libro.
+            String toString(): Escribe una breve descripción del libro.
+    Revista: Es una subclase de las publiaciones, un tipo de publicacion.
+        Atributos:
+            int año: Año de la revista.
+            int número: Número de la revista.
+        Metodos:
+            void Revista(int id, String título, String materia, int cantidadEjemplares, int año, int numero): Constructor.
+            int getAño(): Devuelve el año de la revista.
+            int getNumero(): Devuelve el número de la revista.
+            String toString(): Escribe una breve descripción de la revista.
+    Articulos: Es una subclase de las publiaciones, un tipo de publicacion.
+        Atributos:
+            String Autor: El autor del articulo.
+        Metodos:
+            void Articulos(int id, String título, String materia, int cantidadEjemplares, String Autor): Constructor.
+            String getAutor(): Devuelve la editorial de la revista.
+            String toString(): Escribe una breve descripción del Articulo.
+    Clientes: Es la clase para los clientes y usuarios que vayan a adquirir una publiacion.
+        Atributos:
+            int id: ID del cliente.
+            String nombre: Nombre del cliente.
+            String dirección: Dirección del cliente.
+            int cantidadPrestamos: cantidad de prestamos.
+        Metodos:
+            void Clientes(int id, String nombre, String dirección): Constructor de la clase.
+            int getId(): Retorna el id del cliente.
+            String getNombre(): Retorna el nombre del cliente.
+            String getDireccion(): dirección del cliente.
+            void addPrestamo(Publiacion): Agrega un objeto de tipo prestamo al arraylist del cliente.
+            int getCantidadPrestamos: retorna la cantidad de prestamos.
+            void setCantidadPrestamos: setea la cantidad de prestamos del cliente.
+            String toString(): Escribe una breve descripción del cliente.
+        
+    Prestamo: Es una clase para almacenar la relacion entre cliente y publiacion reservada, hay fechas incluidas.
+        Atributos: 
+            int idPrestamo: id de prestamo.
+            int idCliente: El id del cliente que reservo.
+            int idPublicaion: El id de la publicaion a su obtencion.
+            String fechaPeticion: fecha en la que se pidio el objeto.
+            String fechaEntrega: fecha en la que se devuelve el objeto.
+        Metodos:
+            void Prestamo(int idPrestamo,int idCliente,int idPublicacion, String fechaPeticion, String fechaEntrega): Constructor.
+            int getIdPrestamo(): Retorna el id del prestamo.
+            int idCliente(): Retorna el id del cliente.
+            int idPublicacion(): Retorna el id del publicacion.
+            void setFechaEntrega(String fechaEntrega): Cambia el valor de la variable fechaEntrega.
+            String fechaPeticion(): Retorna la fecha de peticion.
+            String fechaEntrega(): Retorna la fecha de entrega.
+            String toString(): Escribe una breve descripción del prestamo.
+
+        
+            
+        clientes.add(new Cliente(0,"Pedro","Casa 1"));
+            clientes.add(new Cliente(1,"Juan","Casa 2"));
+            clientes.add(new Cliente(2,"Ana","Casa 3"));
+
+            publicaciones.add(new Libro(1, "El Quijote de la Mancha", "Literatura", 10, "Miguel de Cervantes", "Espasa-Calpe"));
+            publicaciones.add(new Revista(2, "National Geographic", "Ciencia", 10, 2023, 12));
+            publicaciones.add(new Articulo(3, "La evolución del hombre", "Ciencia", 10, "Juan Carlos Rodríguez"));
+            
+
+            prestamos.add(new Prestamo(1, 1, 1, "24 de enero del 2022", "31 de junio del 2023"));
+            clientes.get(1).setCantidadPrestamos(1);
+
+
+            //Devolver info de documento segun id.
+            int idopt  = 2;
+            for(Publicacion publicacion: publicaciones){
+                if(publicacion.getId() == idopt){
+                    System.out.println(publicacion.toString());
+                }
+            }
+
+            //Revista
+            for(Publicacion publicacion: publicaciones){
+                if(publicacion instanceof Revista){
+                    System.out.println(publicacion.toString());
+                }
+            }
+
+
+            //Info todos los libros de la biblioteca.
+            for(Publicacion publicacion: publicaciones){
+                    System.out.println(publicacion.toString());
+            }
+
+    
